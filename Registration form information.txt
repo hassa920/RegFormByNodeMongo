@@ -1,0 +1,194 @@
+*Install dependencie:
+
+1. root folder ma npm init -y this is for package.json taka sari dependencies install krska 
+2. Install hbs , template engine and handle bar or hbs
+3. Install express
+4. install mongoose
+
+
+*Make directories:
+
+1. src inside it make models db directory 
+2. inside src make file app.js
+
+
+* In app.js create express server 
+
+in srcipts add new scripts
+
+"dev": "nodemon src/spp.js
+
+iss ko run krna ka liya npm run dev likh do bus baad ma siraf ctrl s krna ha chnages reflect ho jaye geen
+
+
+
+* Database sa connection bana na ha db folder ma 
+after datbase creation just import it in app.js file 
+
+* Next step is Public folder bano us ma ap aik index.html file banao
+
+or phir app.js ma jao express ko bolo mana aik static file create ki ha
+
+to app.js ma apko static path add krna ha 
+
+syntax
+app.use(express.static(path))
+
+iss tarhan ap static website ko host krskat hain
+
+
+* Ab agr dynamic website ka saat khelna ha to views ka aik folder bnao us ma template engine use karo
+Ab haam views ma apna view engine file file bnaye gain hbs ka name sa or phir express ko batye gain haam konsa view engine set krha hain
+saab sa pehla haam // Set the views directory
+app.set('views', path.join(__dirname, 'views')); view directory bi set karain gain
+iss ka liya saab sa pehla haam app.set("view engine","hbs") ka syntax use karain gain or us ka baad iss ko "/" pr edner krwana ka liya haam 
+
+res.send("hhsshhs") ki jaga  haam
+or redner ka undr file ka path da dain gain
+res.render()
+
+
+* Aik template ka main folder banaye gain us ma aik views ka folder bana ga or aik partials ka jo repeat ho g views ki file ma 
+partial ko include krna ka liya
+> ka sign ka baad file name
+{{>navbar}}
+
+
+* Agr directory ka name chnage kr diya ha like templates  us ma views hain to express ko batna ho ga kis ma views hain 
+
+path get krna ka baad expres sko batye gain haam views ka muqabala ma template path use karaha hain
+
+* aik or problem ha us ko ab partials ka paath bi nae mila ga pehla partials ka path get karoo
+hbs ko top pr require karo or baad ma 
+hbs.registerPartials() iss bracket ka andr partials ka path da do
+
+
+* important point nodemon js file ko run krha ha but aik e add karin ha script ma js, ka sat hbs file ko bi run karoo just telling to nodemon
+
+ "dev" : "nodemon src/app.js -e js,hbs" 
+this is the syntax
+
+
+Now make registration form
+
+apka haar aik input filed ma name attribute hona hi chai ha jo har aik ka liya different hoga 
+
+agr data json object ma lana jo express usa handle kara to app.use(express.json()) likhna zarori ha 
+iss sa haam post maan ma to data get kr lain gain but agr node ma console krwana ho to erro aye ga 
+
+ab agr console ma undeined araha ha to us ka liy aik special syntax hota ha wo likh do
+
+
+
+
+** Login Form 
+
+** Secure your password:
+
+password ko koi bi database sa read na kr paye us ka liya haam password ko secure karain gain
+
+Differenc between Encryption and Hashing
+
+Ecription ma plain text ko haam cyper text ma convert krdta hain jo aik alag hi form hoti ha but iss ko decode bi kiya ja skat ha agr  hackers ko pata chal jaye kasa decripti ya decode krna ha 
+ya two way communication ha iss ma ap data ko decode bi krskat hain
+What is Hashing?
+
+but agr kisi data ko apna hash ma convert kiya to iss ko decript nae krksta ha haam ya one way communication ha
+
+
+A website to generate hash:
+
+https://www.md5hashgenerator.com/
+
+
+245e7dc274b08b1460f28a012ef217a2 ya mana hash generate kiya agr ma issa google pr likh ya muja hassam name da da ga iss sa hacker ko idea ho jaey ga ya hassam ka name ha
+
+so md5 ko bht kaam time lagta ha hack hona ma 
+ 
+saab sa best Bycrypt.js iss ko 4 round ma  ha jis ko hack hona 159 days lag skay hain
+12 round ma more than 3 years lagta hain
+
+
+* To use  Bycrypt install bcrypt package 
+npm i bcryptjs
+
+ap apna registration wala code ma jaab ma sign in krwa raha hoon data to data ko save krna sa pehla muj apna hasshing wala code ko likhna hoga 
+matlab jasa hi ma password get krloon
+
+haama schema wali file ma jana ha jo do argument lata ha 
+us ma pre method call krna mtlab jasa hi data get ho jat req ka through muja pre mthod chal dana ha 
+iss pre ma pehla agrment  method save doon ga matlab iss method ko call krna sa pehla ma aik function da doon ga ya saab models wali file ma ho rha ha
+
+haam this laga kr schema wo sari fields ki value get krskat hain jo hamna scema ma define ki ha 
+
+haam aik condition lagaye agr first time user password enter krha ha ya password wali filed ko modify krha ha to taab hi ya chala 
+
+confirm password ki value hash ma nae aye gi ma usa defined kerskat hoon
+kyo ka confirm password hamaa siraf fronent ma check krna ka liya chai ha the moment us ko undefiedn krta hoon to wo databse ma store hi nae hoga 
+
+Ab jaab ma login karoo ga to wahan sa kasa compare hoga hash password kyo ka databse ma to hash password store ha 
+pr mana to enter krn text ma 
+
+
+ab ma login wala post request ma jaoon ga wahan pr passwaord ko compare krna ka code likho ga 
+
+
+
+* authentication using json web token:
+
+
+install json web token
+
+haam jaab bi registartion karain gain to aik token generate karwaye gain to baad ma login krwaye taka pata chala user genuine ha ka nae 
+
+statics are methods defined on model
+methods are defined on document
+use statics 
+for static method
+
+use methods
+for instance methods
+
+
+ab hama apna document ki filed m token ko bi dekhna ha 
+schema ma aik property add karain gain
+
+tokens ka name sa
+
+jo array of object ho gi 
+us ka undr aik or object banaye gain token ka name sa 
+ab issi middle ware ma hi haam token ko save bi krwa dain gain or initialize bi 
+
+acha ab login form ma token kasa genrate krwan ha 
+
+same wohi procedure ha just token call krna ha 
+
+
+* How to make code more secure by using .env file in hindi
+
+secret key bi gihub pr upload ho jaye gi 
+hama secret key ko secure rkhana ha wo host na ho
+
+install dotenv package
+ab ap.js file ma aik syntax ha usko saab sa top pr rkhna ha 
+require('dotenv').config()
+iss ko app.js ma saab sa top pr rkhna ha 
+
+now create .env file in root directory 
+this is our simple plain text file or nothing
+haama .nev file ma koi space nae dani na hi quotes dani just name and = laga kr wo value but not in quotes
+
+use key in capital with underscore betwen two words
+
+
+
+
+
+
+
+
+
+
+
+
+
